@@ -1,0 +1,12 @@
+{
+  "name": "amy",
+  "version": "1.0.0",
+  "description": "chatbot",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "none"
+  },
+  "author": "vincent artino",
+  "license": "ISC"
+}
