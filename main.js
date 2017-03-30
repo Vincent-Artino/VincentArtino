@@ -58,8 +58,13 @@ function processMessage(senderID,messageText){
 			text = messageText.replace("tell me about ","");
 			duck(senderID,text);
 		}
+	if(messageText.include("weather in ")){
+			text = messageText.replace("weather in ","");
+			weather(senderID,text);
+	}
 	return messageText;
 }
+function weather(senderID,text)
 function duck(senderID,text){
 Burl = "http://api.duckduckgo.com/?q="+text+"&format=json&pretty=1";
 	request({
