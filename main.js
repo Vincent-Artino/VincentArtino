@@ -47,7 +47,7 @@ function receivedMessage(event){
 	var messageText = message.text;
 	var messageAttachments = message.attachments;
 	if(messageText){
-		processMessage(senderID,messageText);
+		processMessage(senderID,messageText.toLowerCase());
 	}
 }
 
