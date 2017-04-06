@@ -83,15 +83,15 @@ headers : {
 			img = JSON.parse(body)
 			img.images.forEach(function(i){
 				if(count++<9){
-					console.log(i.display_sizes.uri)
+					console.log(JSON.stringify(i.display_sizes.uri))
 					json = {
 						    "title":i.title,
-						    "image_url":i.display_sizes.uri,
+						    "image_url":JSON.stringify(i.display_sizes.uri),
 						    "buttons":[
 						      {
 							"type":"postback",
 							"title":"Check image",
-							"payload":"img "+i.display_sizes.uri
+							"payload":"img "+JSON.stringify(i.display_sizes.uri)
 						      }              
 						    ]        
 					}
