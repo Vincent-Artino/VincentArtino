@@ -75,7 +75,7 @@ url : "https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referr
 headers : {
 "Api-Key": "kkr5mjrheusxmfxhvxjke83j"
 }
-},fucntion(err,response,body){
+},function(err,response,body){
 	console.log(body)
 	})
 	
