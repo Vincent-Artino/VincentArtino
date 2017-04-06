@@ -56,10 +56,10 @@ function processMessage(senderID,messageText){
 			text = messageText.replace("tell me about ","");
 			duck(senderID,text);
 		}
-	else if(messageText.include("weather")){
+	else if(messageText.includes("weather")){
 			weather(senderID,text);
 	}
-	else if(messageText.include("show me ")){
+	else if(messageText.includes("show me ")){
 			images(senderID,text);
 	}
 	return messageText;
