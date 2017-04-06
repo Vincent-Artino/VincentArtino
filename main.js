@@ -150,7 +150,7 @@ function sendTextMessage(recID,messText){
 function sendAttachment(recID,attach){
 	var messageData = {
 	recipient : {
-		id : recId	
+		id : recID	
 	},
 	message : {
 		attachment :attach
