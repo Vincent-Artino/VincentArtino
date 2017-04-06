@@ -83,7 +83,7 @@ headers : {
 			img = JSON.parse(body)
 			img.images.forEach(function(i){
 				if(count++<9){
-					console.log(JSON.stringify(i.display_sizes.uri))
+					console.log(i.display_sizes)
 					json = {
 						    "title":i.title,
 						    "image_url":JSON.stringify(i.display_sizes.uri),
