@@ -76,7 +76,32 @@ headers : {
 "Api-Key": "kkr5mjrheusxmfxhvxjke83j"
 }
 },function(err,response,body){
-	console.log(body)
+		elem = []
+		count = 0
+		body.images.forEach(i){
+			if(count++<9){
+				json = {
+					    "title":i.title,
+					    "image_url":i.display_sizes.uri,
+					    "buttons":[
+					      {
+						"type":"postback",
+						"title":"Check image",
+						"payload":"img "+i.display_sizes.uri
+					      }              
+					    ]        
+				}
+				elem.push(json)
+				data = {
+					"type":"template",
+					"payload":{
+						"template_type":"generic",
+						"elements":elem
+					}
+				}
+			}
+		}
+	sendAttachment(snderID,data)
 	})
 	
 }
@@ -115,6 +140,19 @@ function sendTextMessage(recID,messText){
 	}
 }
 	sendMessage(messageData);
+}
+function sendAttachment(recID,attach){
+	var messageData = {
+	recipient : {
+		id : recId	
+	},
+	message : {
+		attachment :attach
+	}
+}
+	console.log("attaching : "+attach);
+	sendMessage(messageData);
+
 }
 function sendImage(recId,Iurl){
 	var messageData = {
