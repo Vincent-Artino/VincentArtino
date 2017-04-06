@@ -65,11 +65,11 @@ function processMessage(senderID,messageText){
 	return messageText;
 }
 function weather(senderID,text){
-text = messageText.replace("weather in ","")
+text = text.replace("weather in ","")
 
 }
 function images(snderID,text){
-text = messageText.replace("show me ","")
+text = text.replace("show me ","")
 request({
 url : "https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=best&phrase="+text,
 headers : {
