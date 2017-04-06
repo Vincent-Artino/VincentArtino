@@ -74,8 +74,7 @@ request({
 url : "https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=best&phrase="+text,
 headers : {
 "Api-Key": "kkr5mjrheusxmfxhvxjke83j"
-},
-json: true
+}
 },fucntion(err,response,body){
 	console.log(body)
 	})
