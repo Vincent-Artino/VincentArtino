@@ -77,10 +77,11 @@ headers : {
 }
 },function(err,response,body){
 	if(!err){
-		console.log(body.images)
+		console.log(JSON.parse(body.images))
 			elem = []
 			count = 0
-			body.images.forEach(function(i){
+			img = JSON.parse(body.images)
+			img.forEach(function(i){
 				if(count++<9){
 					json = {
 						    "title":i.title,
