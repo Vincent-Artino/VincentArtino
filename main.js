@@ -77,7 +77,7 @@ headers : {
 }
 },function(err,response,body){
 	if(!err){
-		console.log(body)
+		console.log(body.images)
 			elem = []
 			count = 0
 			body.images.forEach(function(i){
