@@ -76,34 +76,38 @@ headers : {
 "Api-Key": "kkr5mjrheusxmfxhvxjke83j"
 }
 },function(err,response,body){
-		elem = []
-		count = 0
-		body.images.forEach(function(i){
-			if(count++<9){
-				json = {
-					    "title":i.title,
-					    "image_url":i.display_sizes.uri,
-					    "buttons":[
-					      {
-						"type":"postback",
-						"title":"Check image",
-						"payload":"img "+i.display_sizes.uri
-					      }              
-					    ]        
-				}
-				elem.push(json)
-				data = {
-					"type":"template",
-					"payload":{
-						"template_type":"generic",
-						"elements":elem
+	if(!err){
+			elem = []
+			count = 0
+			body.images.forEach(function(i){
+				if(count++<9){
+					json = {
+						    "title":i.title,
+						    "image_url":i.display_sizes.uri,
+						    "buttons":[
+						      {
+							"type":"postback",
+							"title":"Check image",
+							"payload":"img "+i.display_sizes.uri
+						      }              
+						    ]        
+					}
+					elem.push(json)
+					data = {
+						"type":"template",
+						"payload":{
+							"template_type":"generic",
+							"elements":elem
+						}
 					}
 				}
-			}
-		})
-	sendAttachment(snderID,data)
+			})
+		sendAttachment(snderID,data)
+		}
+	else{
+	console.log(err)
+	}
 	})
-	
 }
 
 function duck(senderID,text){
