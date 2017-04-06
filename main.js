@@ -10,8 +10,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 access_token="EAAXo0ZADqGgkBAFRAoQYZB8zZAGr47ci68Q17zBqWKsiiLImBMZAuZBIJd3R7k7pSEBPlHHKOTv4AADnZBQwNZBVQg34ky7hFgbQukq8ZAeGyan9IV5MPDKrYaYC5zopBum5YDSj5ruiWDTSAeCAGYWLVh9XZAoVZC16FJ1qpusiGjFAZDZD";
-
-
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
       req.query['hub.verify_token'] === 'Vincent') {
@@ -58,13 +56,32 @@ function processMessage(senderID,messageText){
 			text = messageText.replace("tell me about ","");
 			duck(senderID,text);
 		}
-	if(messageText.include("weather in ")){
-			text = messageText.replace("weather in ","");
+	else if(messageText.include("weather")){
 			weather(senderID,text);
+	}
+	else if(messageText.include("show me ")){
+			images(senderID,text);
 	}
 	return messageText;
 }
-function weather(senderID,text)
+function weather(senderID,text){
+text = messageText.replace("weather in ","")
+
+}
+function images(snderID,text){
+text = messageText.replace("show me ","")
+request({
+url : "https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=best&phrase="+text,
+headers : {
+"Api-Key": "kkr5mjrheusxmfxhvxjke83j"
+},
+json: true
+},fucntion(err,response,body){
+	console.log(body)
+	})
+	
+}
+
 function duck(senderID,text){
 Burl = "http://api.duckduckgo.com/?q="+text+"&format=json&pretty=1";
 	request({
