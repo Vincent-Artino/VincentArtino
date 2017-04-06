@@ -60,11 +60,11 @@ function processMessage(senderID,messageText){
 			weather(senderID,messageText);
 	}
 	else if(messageText.includes("show me ")){
-			images(senderID,messageText);
+			images(senderID,messageText)
+	}
 	else if(messageText.includes("img ")){
 			text = messageText.replace("img ","");
 			sendImage(senderID,text);
-		
 	}
 	return messageText;
 }
