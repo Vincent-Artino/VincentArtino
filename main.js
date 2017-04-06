@@ -57,10 +57,10 @@ function processMessage(senderID,messageText){
 			duck(senderID,text);
 		}
 	else if(messageText.includes("weather")){
-			weather(senderID,text);
+			weather(senderID,messageText);
 	}
 	else if(messageText.includes("show me ")){
-			images(senderID,text);
+			images(senderID,messageText);
 	}
 	return messageText;
 }
