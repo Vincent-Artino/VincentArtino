@@ -78,7 +78,7 @@ headers : {
 },function(err,response,body){
 		elem = []
 		count = 0
-		body.images.forEach(i){
+		body.images.forEach(function(i){
 			if(count++<9){
 				json = {
 					    "title":i.title,
@@ -100,7 +100,7 @@ headers : {
 					}
 				}
 			}
-		}
+		})
 	sendAttachment(snderID,data)
 	})
 	
