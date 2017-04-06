@@ -95,7 +95,7 @@ headers : {
 						      {
 							"type":"postback",
 							"title":"Check image",
-							"payload":"img "+i.display_sizes.uri
+							"payload":"img "+i.display_sizes[0].uri
 						      }              
 						    ]        
 					}
