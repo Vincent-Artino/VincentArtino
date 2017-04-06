@@ -86,12 +86,12 @@ headers : {
 					console.log(i.display_sizes)
 					json = {
 						    "title":i.title,
-						    "image_url":JSON.stringify(i.display_sizes.uri),
+						    "image_url":i.display_sizes[0].uri,
 						    "buttons":[
 						      {
 							"type":"postback",
 							"title":"Check image",
-							"payload":"img "+JSON.stringify(i.display_sizes.uri)
+							"payload":"img "+i.display_sizes.uri
 						      }              
 						    ]        
 					}
