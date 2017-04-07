@@ -69,12 +69,27 @@ function processMessage(senderID,messageText){
 	else if(messageText.includes("#videos ")){
 			videos(senderID,messageText)
 	}
+	else if(messageText.includes("tell me about ")){
+			wiki(senderID,messageText)
+	}
 	return messageText;
 }
 function weather(senderID,text){
 text = text.replace("weather in ","")
 
 }
+
+function wiki(senderID,text){
+text = text.replace("tell me about ","")
+request({
+    url:"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exsentences=4&exintro=&explaintext=&titles="+text,
+    json:true
+  }, function(error, res, body){
+	console.log(body.query.pages)
+	console.log(body.query.pages[0])
+})
+}
+
 function videos(senderID,text){
 text = text.replace("#videos ","")
 request({
