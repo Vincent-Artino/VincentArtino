@@ -49,7 +49,7 @@ function receivedMessage(event){
 	if(messageText){
 		processMessage(senderID,messageText.toLowerCase());
 	}
-	if(event.message.quick_reply.payload.includes("#score")){
+	else if(event.message.quick_reply.payload.includes("#score")){
 		text = parseInt(event.message.quick_reply.payload)
 		score(senderID,text)
 	}
