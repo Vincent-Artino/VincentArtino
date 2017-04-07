@@ -119,6 +119,9 @@ function score(senderID,id){
    	}, function (err, res, body) {
 		if(!err){
 			console.log(body)
+			sendTextMessage(body["innings-requirement"])
+			if(body["score"])
+				sendTextMessage(body["score"])
 		}
 		else
 			console.log("nope")
