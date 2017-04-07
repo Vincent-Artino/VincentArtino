@@ -114,9 +114,8 @@ function score(senderID,id){
 	request({
     	headers: {
 		"apikey" : "RqykOVNrgVUMeZye189OQ3SaB7k1",
-		"unique_id" : 1082593
 	},
-   	url: "http://cricapi.com/api/cricketScore",
+   	url: " http://cricapi.com/api/cricketScore?unique_id="+id,
    	}, function (err, res, body) {
 		if(!err){
 			console.log(body)
