@@ -85,7 +85,6 @@ function cricket(senderID,text){
    	}, function (err, res, body) {
 	if(!err){
 	var arr = []
-	console.log(JSON.parse(body).matches)
 	result=JSON.parse(body)
 	result.matches.forEach(function(match){
 		teams.forEach(function(team){
@@ -271,6 +270,7 @@ Burl = "http://api.duckduckgo.com/?q="+text+"&format=json&pretty=1";
 }
 function sendQuick(recID,title,array){
 	console.log(array)
+	
 	var messageData = {
 		recipient : {
 			id : recID	
