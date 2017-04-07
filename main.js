@@ -102,7 +102,7 @@ request({
 					})
 				}
 				else{
-					id = "watch?v="+ink.id.videoId
+					id = ink.id.videoId
 					inko.push({
 						"title":ink.snippet.title,
 						"image_url":ink.snippet.thumbnails.high.url,
