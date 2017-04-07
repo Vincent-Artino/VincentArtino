@@ -116,7 +116,7 @@ request({
 				"type":"template",
 				"payload":{
 					"template_type":"generic",
-					"elements":elem
+					"elements":inko
 				}
 			}
 		sendAttachment(senderID,data)
