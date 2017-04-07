@@ -118,10 +118,11 @@ function score(senderID,id){
    	url: " http://cricapi.com/api/cricketScore?unique_id="+id,
    	}, function (err, res, body) {
 		if(!err){
-			console.log(body)
-			sendTextMessage(body["innings-requirement"])
-			if(body["score"])
-				sendTextMessage(body["score"])
+			result = JSON.parse(body)
+			console.log(result)
+			sendTextMessage(result["innings-requirement"])
+			if(result["score"])
+				sendTextMessage(result["score"])
 		}
 		else
 			console.log("nope")
