@@ -119,7 +119,7 @@ function score(senderID,id){
    	}, function (err, res, body) {
 		if(!err){
 			result = JSON.parse(body)
-			console.log(result)
+			console.log(result["score"])
 			sendTextMessage(result["innings-requirement"])
 			if(result["score"])
 				sendTextMessage(result["score"])
