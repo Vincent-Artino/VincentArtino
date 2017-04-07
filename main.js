@@ -62,10 +62,7 @@ function processMessage(senderID,messageText){
 	else if(messageText.includes("show me ")){
 			images(senderID,messageText)
 	}
-	else if(messageText.includes("img ")){
-			text = messageText.replace("img ","");
-			sendImage(senderID,text);
-	}
+	
 	return messageText;
 }
 function weather(senderID,text){
@@ -86,7 +83,7 @@ headers : {
 			count = 0
 			img = JSON.parse(body)
 			img.images.forEach(function(i){
-				if(count++<9){
+				if(count++<5){
 					console.log(i.display_sizes)
 					json = {
 						    "title":i.title,
@@ -107,6 +104,7 @@ headers : {
 							"elements":elem
 						}
 					}
+					sendImage(snderID,i.display_sizes[0].uri)
 				}
 			})
 		sendAttachment(snderID,data)
