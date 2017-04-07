@@ -46,9 +46,11 @@ function receivedMessage(event){
 	console.log("received message from "+event.sender.id);
 	var messageText = message.text;
 	var messageAttachments = message.attachments;
+	console.log(event)
 	if(messageText){
 		processMessage(senderID,messageText.toLowerCase());
 	}
+	
 }
 
 function processMessage(senderID,messageText){
