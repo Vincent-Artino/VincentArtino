@@ -97,12 +97,11 @@ function cricket(senderID,text){
 		"content_type":"text",
         	"title":match["team-1"]+"vs"+match["team-2"],
         	"payload":"#scores "+match["unique_id"]
-		})
+		})		
+	})
 		title = "No IPL or Indian matches going on currently."	
 		sendQuick(senderID,title,arr)
-		}
 	}
-	})
 	})
 }
 function score(senderID,id){
