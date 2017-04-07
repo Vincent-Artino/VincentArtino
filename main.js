@@ -82,8 +82,7 @@ request({
     url:"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exsentences=4&exintro=&explaintext=&titles="+text,
     json:true
   }, function(error, res, body){
-	console.log(body.query.pages)
-	console.log(body.query.pages[0])
+	console.log(Object.keys(body.query.pages))
 })
 }
 
