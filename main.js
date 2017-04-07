@@ -93,14 +93,15 @@ function cricket(senderID,text){
 				score(senderID,match["unique_id"])
 		})
 		if(match.squad&&match.matchStarted){
-		arr.push({
-		"content_type":"text",
-        	"title":match["team-1"]+"vs"+match["team-2"],
-        	"payload":"#scores "+match["unique_id"]
-		})		
+			arr.push({
+			"content_type":"text",
+			"title":match["team-1"]+"vs"+match["team-2"],
+			"payload":"#scores "+match["unique_id"]
+			})		
+		}
 	})
-		title = "No IPL or Indian matches going on currently."	
-		sendQuick(senderID,title,arr)
+	title = "No IPL or Indian matches going on currently."	
+	sendQuick(senderID,title,arr)
 	}
 	})
 }
