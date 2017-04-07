@@ -2,7 +2,6 @@ express = require('express');
 https = require('https');
 request = require('request');
 var app = express();
-var cricapi = require("node-cricapi");
 port = Number(process.env.PORT || 5000);
 var city,text,temp,temperature;
 var bodyParser = require('body-parser')
@@ -21,7 +20,7 @@ app.get('/webhook', function(req, res) {
     res.sendStatus(403);          
   }  
 });
-
+var teams = ["Delhi Daredevils","Royal Challengers Bangalore","Kings XI Punjab","Rising Pune Supergiant","Kolkata Knight Riders","Gujarat Lions","Sunrisers Hyderabad","Mumbai Indians"]
 app.post('/webhook', function (req, res) {
 	var data = req.body;
 	if(data.object === 'page'){
@@ -75,13 +74,44 @@ function processMessage(senderID,messageText){
 }
 function weather(senderID,text){
 text = text.replace("weather in ","")
-
+	
 }
 function cricket(senderID,text){
-	cricapi.cricketMatches(function(databundle){
-	console.log(databundle)
-
-	});
+	request({
+    	headers: {
+		"appkey": "4362b8401628e2f5e9cc9740610711d1"
+    	},
+   	uri: "http://cricapi.com/api/matches",
+   	}, function (err, res, body) {
+	var arr = []
+	console.log(":'( :'( yasss!!")
+	body.forEach(function(match){
+		teams.forEach(function(team){
+			if(match["team-1"].contains(team))
+				score(senderID,match["unique_id"])
+		})
+		if(match.squad&&match.matchStarted){
+		arr.push({
+		"content_type":"text",
+        	"title":match["team-1"]+"vs"+match["team-2"],
+        	"payload":"#scores "+match["unique_id"]
+		})
+		title = "No IPL or Indian matches going on currently."	
+		sendQuick(senderID,title,arr)
+		}
+	})
+	})
+}
+function score(senderID,id){
+	request({
+    	headers: {
+		"unique_id": id
+		"apikey": "4362b8401628e2f5e9cc9740610711d1"
+    	},
+   	uri: "http://cricapi.com/api/cricketScore",
+   	}, function (err, res, body) {
+		console.log(body)
+	})
 }
 function wiki(senderID,text){
 text = text.replace("tell me about ","")
@@ -234,6 +264,18 @@ Burl = "http://api.duckduckgo.com/?q="+text+"&format=json&pretty=1";
 	}	
 });
 
+}
+function sendQuick(recID,title,array){
+	var messageData = {
+		recipient : {
+			id : recID	
+		},
+		message : {
+			"text":title,
+    			"quick_replies":array
+		}
+	}
+	sendMessage(messageData);
 }
 function sendTextMessage(recID,messText){
 	var messageData = {
