@@ -53,7 +53,6 @@ function receivedMessage(event){
 
 function processMessage(senderID,messageText){
 	if(messageText.includes("tell me about ")){
-			console.log("yes!!")
 			wiki(senderID,messageText)
 		}
 	else if(messageText.includes("weather")){
@@ -79,7 +78,7 @@ function wiki(senderID,text){
 text = text.replace("tell me about ","")
 	console.log(text)
 request({
-    url:"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&redirects=1&exsentences=4&titles="+text,
+    url:"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&redirects=1&exsentences=3&titles="+text,
     json:true
   }, function(error, res, body){
 	var key = Object.keys(body.query.pages)
