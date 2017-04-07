@@ -63,11 +63,38 @@ function processMessage(senderID,messageText){
 			images(senderID,messageText)
 	}
 	
+	else if(messageText.includes("#words ")){
+			words(senderID,messageText)
+	}
+	
 	return messageText;
 }
 function weather(senderID,text){
 text = text.replace("weather in ","")
 
+}
+function words(senderID, text){
+text = text.replace("#words ","")
+request({
+    headers: {
+  "app_id": "c8d9fc8b",
+  "app_key": "4362b8401628e2f5e9cc9740610711d1"
+    },
+    uri: 'https://od-api.oxforddictionaries.com:443/api/v1/entries/en/'+text,
+    //body: formData,
+    //method: 'POST'
+  }, function (err, res, body) {
+    console.log(JSON.parse(res.body).results[0].lexicalEntries);
+    var wdata = JSON.parse(res.body);
+    var word_description = "Word: "+wdata.results[0].id+" "+"( "+wdata.results[0].lexicalEntries[0].lexicalCategory+" )\r\n"
+                            +wdata.results[0].lexicalEntries[0].pronunciations[0].phoneticSpelling+"\r\n"+
+                             "Meaning: "+wdata.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0]+"\r\n"+
+                             "Example: " +wdata.results[0].lexicalEntries[0].entries[0].senses[0].examples[0].text+"."
+                             console.log(word_description)
+    link = wdata.results[0].lexicalEntries[0].pronunciations[0].audioFile;
+                             sendMessage(word_description, response)
+    
+  });
 }
 function images(snderID,text){
 text = text.replace("show me ","")
@@ -107,7 +134,7 @@ headers : {
 					sendImage(snderID,i.display_sizes[0].uri)
 				}
 			})
-		sendAttachment(snderID,data)
+		//sendAttachment(snderID,data)
 		}
 	else{
 	console.log(err)
