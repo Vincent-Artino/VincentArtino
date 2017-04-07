@@ -79,7 +79,7 @@ text = text.replace("weather in ","")
 function cricket(senderID,text){
 	request({
     	headers: {
-		"apikey": "4362b8401628e2f5e9cc9740610711d1"
+		"apikey": "RqykOVNrgVUMeZye189OQ3SaB7k1 "
     	},
    	uri: "http://cricapi.com/api/matches",
    	}, function (err, res, body) {
@@ -109,7 +109,7 @@ function score(senderID,id){
 	request({
     	headers: {
 		"unique_id": id,
-		"apikey": "4362b8401628e2f5e9cc9740610711d1"
+		"apikey": "RqykOVNrgVUMeZye189OQ3SaB7k1 "
     	},
    	uri: "http://cricapi.com/api/cricketScore",
    	}, function (err, res, body) {
