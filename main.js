@@ -66,13 +66,68 @@ function processMessage(senderID,messageText){
 	else if(messageText.includes("#words ")){
 			words(senderID,messageText)
 	}
-	
+	else if(messageText.includes("#videos ")){
+			videos(senderID,messageText)
+	}
 	return messageText;
 }
 function weather(senderID,text){
 text = text.replace("weather in ","")
 
 }
+function videos(senderID,text){
+text = text.replace("#videos ","")
+request({
+    url:"https://www.googleapis.com/youtube/v3/search?key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk9&part=snippet&q="+text,
+    json:true
+  }, function(error, res, body){
+           if(!error){
+   		if(body!= null){
+    			var inko = []
+			
+			var i=0;
+			body.items.forEach ( function(ink) {
+			if(i<8){
+				if(ink.id.kind == "youtube#channel"){
+					id = "channel/"+ink.id.channelId
+					inko.push({
+					"title":ink.snippet.title,
+					"image_url":ink.snippet.thumbnails.high.url,
+					"subtitle":ink.snippet.description,
+					})
+				}
+				else{
+					id = "watch?v="+ink.id.videoId
+					inko.push({
+						"title":ink.snippet.title,
+						"image_url":ink.snippet.thumbnails.high.url,
+						"subtitle":ink.snippet.description,
+						"buttons" : [{
+							"type":"postback",
+							"title":"Play video",
+							"payload":"play video https://www.youtube.com/"+id
+						}]
+					})
+				}
+			      	i++
+			}
+			})
+			data = {
+				"type":"template",
+				"payload":{
+					"template_type":"generic",
+					"elements":elem
+				}
+			}
+		sendAttachment(senderID,data)
+    		}
+           }//error
+           else
+           console.log(error)
+  })
+
+}
+
 function words(senderID, text){
 text = text.replace("#words ","")
 request({
@@ -124,16 +179,16 @@ headers : {
 						    ]        
 					}
 					elem.push(json)
-					data = {
-						"type":"template",
-						"payload":{
-							"template_type":"generic",
-							"elements":elem
-						}
-					}
 					sendImage(snderID,i.display_sizes[0].uri)
 				}
 			})
+			data = {
+				"type":"template",
+				"payload":{
+					"template_type":"generic",
+					"elements":elem
+				}
+			}
 		//sendAttachment(snderID,data)
 		}
 	else{
