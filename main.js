@@ -32,7 +32,7 @@ app.post('/webhook', function (req, res) {
 			receivedMessage(event);		
 		}
 		else{
-			console.log("Unknown event : ",event);
+			//console.log("Unknown event : ",event);
 		}
 	});
 });
@@ -105,7 +105,7 @@ function cricket(senderID,text){
 		}
 	})
 	title = "No IPL or Indian matches going on currently."	
-	sendQuick(senderID,title,arr)
+	//sendQuick(senderID,title,arr)
 	}
 	})
 }
@@ -118,7 +118,11 @@ function score(senderID,id){
     	},
    	uri: "http://cricapi.com/api/cricketScore",
    	}, function (err, res, body) {
-		console.log(body)
+		if(!err){
+			console.log(body)
+		}
+		else
+			console.log("nope")
 	})
 }
 function wiki(senderID,text){
