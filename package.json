@@ -13,6 +13,7 @@
     "body-parser": "^1.16.0",
     "express": "^4.14.0",
     "https": "^1.0.0",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "node-cricapi" : "^1.2.5"
   }
 }
