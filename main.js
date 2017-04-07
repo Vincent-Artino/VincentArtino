@@ -79,10 +79,12 @@ function wiki(senderID,text){
 text = text.replace("tell me about ","")
 	console.log(text)
 request({
-    url:"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exsentences=4&exintro=&explaintext=&titles="+text,
+    url:"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&redirects=1&exsentences=4&titles="+text,
     json:true
   }, function(error, res, body){
-	console.log(Object.keys(body.query.pages))
+	var key = Object.keys(body.query.pages)
+	sendTextMessage(body.query.pages[key[0]].extract)
+	
 })
 }
 
@@ -129,7 +131,6 @@ request({
            else
            console.log(error)
   })
-
 }
 
 function words(senderID, text){
