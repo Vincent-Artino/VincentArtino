@@ -89,13 +89,13 @@ function cricket(senderID,text){
 	result=JSON.parse(body)
 	result.matches.forEach(function(match){
 		teams.forEach(function(team){
-			if(match["team-1"].includes(team))
+			if(match.squad&&match.matchStarted&&match["team-1"].includes(team))
 				score(senderID,match["unique_id"])
 		})
 		if(match.squad&&match.matchStarted){
 			arr.push({
 			"content_type":"text",
-			"title":match["team-1"]+"vs"+match["team-2"],
+			"title":match["team-1"]+" vs "+match["team-2"],
 			"payload":"#scores "+match["unique_id"]
 			})		
 		}
@@ -106,6 +106,7 @@ function cricket(senderID,text){
 	})
 }
 function score(senderID,id){
+	console.log(id)
 	request({
     	headers: {
 		"unique_id": id,
