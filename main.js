@@ -87,7 +87,7 @@ function cricket(senderID,text){
 	var arr = []
 	console.log(":'( :'( yasss!!"+body)
 	
-	body.forEach(function(match){
+	body.matches.forEach(function(match){
 		teams.forEach(function(team){
 			if(match["team-1"].contains(team))
 				score(senderID,match["unique_id"])
