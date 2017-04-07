@@ -83,8 +83,10 @@ function cricket(senderID,text){
     	},
    	uri: "http://cricapi.com/api/matches",
    	}, function (err, res, body) {
+	if(!err){
 	var arr = []
-	console.log(":'( :'( yasss!!")
+	console.log(":'( :'( yasss!!"+body)
+	
 	body.forEach(function(match){
 		teams.forEach(function(team){
 			if(match["team-1"].contains(team))
@@ -99,6 +101,7 @@ function cricket(senderID,text){
 		title = "No IPL or Indian matches going on currently."	
 		sendQuick(senderID,title,arr)
 		}
+	}
 	})
 	})
 }
