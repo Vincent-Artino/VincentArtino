@@ -33,6 +33,11 @@ app.post('/webhook', function (req, res) {
 		}
 		else{
 			console.log("Unknown event : ",event);
+			if(event.postback){
+				if(event.postback.payload.includes("play video ")){
+					sendVideo(event.sender.id,"https://youtu.be/"+event.postback.payload.replace("play video "))
+				}
+			}
 		}
 	});
 });
@@ -105,7 +110,7 @@ request({
 						"buttons" : [{
 							"type":"postback",
 							"title":"Play video",
-							"payload":"play video https://www.youtube.com/"+id
+							"payload":"play video "+id
 						}]
 					})
 				}
@@ -262,7 +267,23 @@ function sendImage(recId,Iurl){
 	console.log("imaging : "+Iurl);
 	sendMessage(messageData);
 }
-
+function sendVideo(recId,Iurl){
+	var messageData = {
+	recipient : {
+		id : recId	
+	},
+	message : {
+		attachment : {
+			type : "video",
+			payload : {
+				url : Iurl		
+			} 
+		}
+	}
+}
+	console.log("imaging : "+Iurl);
+	sendMessage(messageData);
+}
 function sendMessage(messageData){
 request({
 	uri: 'https://graph.facebook.com/v2.6/me/messages',
