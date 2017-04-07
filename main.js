@@ -46,9 +46,12 @@ function receivedMessage(event){
 	console.log("received message from "+event.sender.id);
 	var messageText = message.text;
 	var messageAttachments = message.attachments;
-	console.log(event)
 	if(messageText){
 		processMessage(senderID,messageText.toLowerCase());
+	}
+	if(event.message.quick_reply.payload.includes("#score")){
+		text = parseInt(event.message.quick_reply.payload)
+		score(senderID,text)
 	}
 	
 }
