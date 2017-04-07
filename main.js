@@ -89,7 +89,7 @@ function cricket(senderID,text){
 	result=JSON.parse(body)
 	result.matches.forEach(function(match){
 		teams.forEach(function(team){
-			if(match["team-1"].contains(team))
+			if(match["team-1"].includes(team))
 				score(senderID,match["unique_id"])
 		})
 		if(match.squad&&match.matchStarted){
