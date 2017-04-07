@@ -270,6 +270,7 @@ Burl = "http://api.duckduckgo.com/?q="+text+"&format=json&pretty=1";
 
 }
 function sendQuick(recID,title,array){
+	console.log(array)
 	var messageData = {
 		recipient : {
 			id : recID	
