@@ -2,6 +2,7 @@ express = require('express');
 https = require('https');
 request = require('request');
 var app = express();
+var cricapi = require("node-cricapi");
 port = Number(process.env.PORT || 5000);
 var city,text,temp,temperature;
 var bodyParser = require('body-parser')
@@ -77,7 +78,10 @@ text = text.replace("weather in ","")
 
 }
 function cricket(senderID,text){
+	cricapi.cricketMatches(function(databundle){
+	console.log(databundle)
 
+	});
 }
 function wiki(senderID,text){
 text = text.replace("tell me about ","")
