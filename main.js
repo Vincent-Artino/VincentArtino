@@ -67,13 +67,18 @@ function processMessage(senderID,messageText){
 	else if(messageText.includes("#videos ")){
 			videos(senderID,messageText)
 	}
+	else if(messageText.includes("#cricket")){
+			cricket(senderID,messageText)
+	}
 	return messageText;
 }
 function weather(senderID,text){
 text = text.replace("weather in ","")
 
 }
+function cricket(senderID,text){
 
+}
 function wiki(senderID,text){
 text = text.replace("tell me about ","")
 	console.log(text)
