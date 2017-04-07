@@ -236,6 +236,7 @@ function sendTextMessage(recID,messText){
 	text:messText	
 	}
 }
+	console.log(messText)
 	sendMessage(messageData);
 }
 function sendAttachment(recID,attach){
