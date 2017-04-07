@@ -85,9 +85,9 @@ function cricket(senderID,text){
    	}, function (err, res, body) {
 	if(!err){
 	var arr = []
-	console.log(":'( :'( yasss!!"+body)
-	
-	body.matches.forEach(function(match){
+	console.log(JSON.parse(body).matches)
+	result=JSON.parse(body)
+	result.matches.forEach(function(match){
 		teams.forEach(function(team){
 			if(match["team-1"].contains(team))
 				score(senderID,match["unique_id"])
