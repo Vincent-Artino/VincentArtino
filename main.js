@@ -53,8 +53,8 @@ function receivedMessage(event){
 
 function processMessage(senderID,messageText){
 	if(messageText.includes("tell me about ")){
-			text = messageText.replace("tell me about ","");
-			duck(senderID,text);
+			console.log("yes!!")
+			wiki(senderID,messageText)
 		}
 	else if(messageText.includes("weather")){
 			weather(senderID,messageText);
@@ -67,10 +67,6 @@ function processMessage(senderID,messageText){
 	}
 	else if(messageText.includes("#videos ")){
 			videos(senderID,messageText)
-	}
-	else if(messageText.includes("tell me about ")){
-			console.log("yes!!")
-			wiki(senderID,messageText)
 	}
 	return messageText;
 }
