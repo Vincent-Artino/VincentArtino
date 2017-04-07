@@ -75,7 +75,10 @@ function processMessage(senderID,messageText){
 			videos(senderID,messageText)
 	}
 	else if(messageText.includes("#cricket")){
-			cricket(senderID,messageText)
+			cricket(senderID)
+	}
+	else if(messageText.includes("#news")){
+			news(senderID)
 	}
 	return messageText;
 }
@@ -118,7 +121,10 @@ request({
   }
          )
 }
-function cricket(senderID,text){
+function news(senderID){
+
+}
+function cricket(senderID){
 	request({
     	headers: {
 		"apikey": "RqykOVNrgVUMeZye189OQ3SaB7k1 "
