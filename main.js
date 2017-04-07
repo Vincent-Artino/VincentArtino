@@ -83,6 +83,8 @@ request({
     json:true
   }, function(error, res, body){
 	var key = Object.keys(body.query.pages)
+	console.log(key[0] + "  "+body.query.pages[key[0]].extract))
+	
 	sendTextMessage(body.query.pages[key[0]].extract)
 	
 })
