@@ -62,7 +62,7 @@ function processMessage(senderID,messageText){
 	if(messageText.includes("tell me about ")){
 			wiki(senderID,messageText)
 		}
-	else if(messageText.includes("weather")){
+	else if(messageText.includes("weather in ")){
 			weather(senderID,messageText);
 	}
 	else if(messageText.includes("show me ")){
@@ -81,7 +81,42 @@ function processMessage(senderID,messageText){
 }
 function weather(senderID,text){
 text = text.replace("weather in ","")
-	
+request({
+    url:"http://api.openweathermap.org/data/2.5/weather?q="+text+"&units=metric&appid=93e0f7faf62f96d54eb1d5caa28ed417",
+    json:true
+  }, function(error, res, body)
+          {console.log(city)
+           if(!error)
+           {
+		    if(body!= null){
+			    console.log("Into body")
+			    if(body.weather !=null){
+				    console.log("Into body.weather")
+				    if(body.weather[0].description!=null){
+					    console.log("into desc too")
+					    var weather= "Today, in " +body.name+ " we have " +body.weather[0].description+ " and the temperature is " +body.main.temp+" °C"
+					attach ={
+					      	"type": "template",
+					      	"payload": {
+					      	"template_type":"generic",
+						"elements":[
+						 	{
+						    		"title":"Weather in "+body.name,
+						    		"image_url":"http://www.omgubuntu.co.uk/wp-content/uploads/2013/12/Flat-Weather-Icon-Set.png",
+						    		"subtitle":weather
+						   	}//element
+						   ]//element
+					      	}//payload
+					      }//attach
+					    sendAttachment(senderID,attach)
+					}
+			    }
+		    }
+           }//error
+           else
+           console.log(error)
+  }
+         )
 }
 function cricket(senderID,text){
 	request({
