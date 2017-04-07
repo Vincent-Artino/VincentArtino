@@ -62,7 +62,6 @@ function processMessage(senderID,messageText){
 	else if(messageText.includes("show me ")){
 			images(senderID,messageText)
 	}
-	
 	else if(messageText.includes("#words ")){
 			words(senderID,messageText)
 	}
@@ -70,6 +69,7 @@ function processMessage(senderID,messageText){
 			videos(senderID,messageText)
 	}
 	else if(messageText.includes("tell me about ")){
+			console.log("yes!!")
 			wiki(senderID,messageText)
 	}
 	return messageText;
@@ -81,6 +81,7 @@ text = text.replace("weather in ","")
 
 function wiki(senderID,text){
 text = text.replace("tell me about ","")
+	console.log(text)
 request({
     url:"https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exsentences=4&exintro=&explaintext=&titles="+text,
     json:true
