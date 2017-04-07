@@ -92,7 +92,7 @@ request({
                              "Example: " +wdata.results[0].lexicalEntries[0].entries[0].senses[0].examples[0].text+"."
                              console.log(word_description)
     link = wdata.results[0].lexicalEntries[0].pronunciations[0].audioFile;
-                             sendMessage(senderID,word_description)
+                             sendTextMessage(senderID,word_description)
     
   });
 }
@@ -217,8 +217,7 @@ request({
 	
 },function (error,response,body){
 	if(!error){
-		console.log("message sent");
-		 	
+		console.log("message sent");	
 	}	
 });
 }
