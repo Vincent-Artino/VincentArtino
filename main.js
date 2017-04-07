@@ -35,6 +35,7 @@ app.post('/webhook', function (req, res) {
 			console.log("Unknown event : ",event);
 			if(event.postback){
 				if(event.postback.payload.includes("play video ")){
+					console.log(event.postback.payload.replace("play video "))
 					sendVideo(event.sender.id,"https://youtu.be/"+event.postback.payload.replace("play video "))
 				}
 			}
