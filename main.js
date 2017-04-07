@@ -33,12 +33,6 @@ app.post('/webhook', function (req, res) {
 		}
 		else{
 			console.log("Unknown event : ",event);
-			if(event.postback){
-				if(event.postback.payload.includes("play video ")){
-				
-					sendVideo(event.sender.id,"https://youtu.be/"+event.postback.payload.replace("play video ",""))
-				}
-			}
 		}
 	});
 });
@@ -94,27 +88,20 @@ request({
 			var i=0;
 			body.items.forEach ( function(ink) {
 			if(i<8){
-				if(ink.id.kind == "youtube#channel"){
-					id = "channel/"+ink.id.channelId
-					inko.push({
+				if(ink.id.kind == "youtube#channel")
+					  id = "channel/"+ink.id.channelId
+				else
+					  id = "watch?v="+ink.id.videoId
+				//console.log(ink.items.title+" "+ ink.volumeInfo.authors)
+				inko.push({
 					"title":ink.snippet.title,
 					"image_url":ink.snippet.thumbnails.high.url,
 					"subtitle":ink.snippet.description,
-					})
-				}
-				else{
-					id = ink.id.videoId
-					inko.push({
-						"title":ink.snippet.title,
-						"image_url":ink.snippet.thumbnails.high.url,
-						"subtitle":ink.snippet.description,
-						"buttons" : [{
-							"type":"postback",
-							"title":"Play video",
-							"payload":"play video "+id
-						}]
-					})
-				}
+					"default_action": {
+					      "type": "web_url",
+					      "url":"https://www.youtube.com/"+id,
+					}
+				  })
 			      	i++
 			}
 			})
