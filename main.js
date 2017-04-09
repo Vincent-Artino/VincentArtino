@@ -49,7 +49,7 @@ function receivedMessage(event){
 	if(messageText){
 		if(message.quick_reply){
 			var payload = JSON.stringify(message.quick_reply.payload)
-			if(message.quick_reply.payload.includes("#score ")){
+			if(message.quick_reply.payload.includes("#scores ")){
 				console.log("nnnn")
 				score(senderID,parseInt(message.quick_reply.payload))
 			}
