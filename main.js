@@ -136,12 +136,12 @@ function cricket(senderID){
 	var arr = []
 	result=JSON.parse(body)
 	result.matches.forEach(function(match){
-		teams.forEach(function(team){
-			if(match.squad&&match.matchStarted&&match["team-1"].includes(team)){
-				score(senderID,match["unique_id"])
-				isIpl = true
-			}
-		})
+// 		teams.forEach(function(team){
+// 			if(match.squad&&match.matchStarted&&match["team-1"].includes(team)){
+// 				score(senderID,match["unique_id"])
+// 				isIpl = true
+// 			}
+// 		})
 		if(match.squad&&match.matchStarted&&!isIpl){
 			arr.push({
 			"content_type":"text",
