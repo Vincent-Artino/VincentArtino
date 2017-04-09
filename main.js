@@ -79,6 +79,7 @@ function processMessage(senderID,messageText){
 	else if(messageText.includes("#news")){
 			news(senderID)
 	}
+	
 	return messageText;
 }
 function weather(senderID,text){
