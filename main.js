@@ -125,6 +125,7 @@ function news(senderID){
 
 }
 function cricket(senderID){
+	var isIpl = false
 	request({
     	headers: {
 		"apikey": "RqykOVNrgVUMeZye189OQ3SaB7k1 "
@@ -136,10 +137,12 @@ function cricket(senderID){
 	result=JSON.parse(body)
 	result.matches.forEach(function(match){
 		teams.forEach(function(team){
-			if(match.squad&&match.matchStarted&&match["team-1"].includes(team))
+			if(match.squad&&match.matchStarted&&match["team-1"].includes(team)){
 				score(senderID,match["unique_id"])
+				isIpl = true
+			}
 		})
-		if(match.squad&&match.matchStarted){
+		if(match.squad&&match.matchStarted&&!isIpl){
 			arr.push({
 			"content_type":"text",
 			"title":match["team-1"]+" vs "+match["team-2"],
@@ -147,8 +150,10 @@ function cricket(senderID){
 			})		
 		}
 	})
-	title = "No IPL or Indian matches going on currently."	
-	sendQuick(senderID,title,arr)
+	if(!isIpl){
+		title = "No IPL or Indian matches going on currently."	
+		sendQuick(senderID,title,arr)
+	}
 	}
 	})
 }
