@@ -148,7 +148,7 @@ function cricket(senderID){
 		}
 	})
 	title = "No IPL or Indian matches going on currently."	
-	//sendQuick(senderID,title,arr)
+	sendQuick(senderID,title,arr)
 	}
 	})
 }
