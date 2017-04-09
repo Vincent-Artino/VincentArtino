@@ -48,17 +48,12 @@ function receivedMessage(event){
 	var messageAttachments = message.attachments;
 	if(messageText){
 		if(message.quick_reply){
-			console.log("yea...")
+			if(message.quick_reply.payload.includes("#score ")){
+				console.log("nnnn")
+				score(senderID,parseInt(message.quick_reply.payload))
+			}
 		}
 		processMessage(senderID,messageText.toLowerCase());
-	}
-	else if(message.quick_reply){
-		
-		if(message.quick_reply.payload.includes("#score ")){
-			console.log("nnnn")
-			score(senderID,parseInt(message.quick_reply.payload))
-		}
-		console.log(message.quick_reply.payload)
 	}
 	
 }
