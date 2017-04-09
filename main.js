@@ -127,16 +127,14 @@ function news(senderID){
 	    url:"https://newsapi.org/v1/articles?source="+source+"&sortBy=top&apiKey=c0f1536a991945e8b0b19908517d7c72",
 	    json:true
 
-	  }, function(error, res, body)
-		  {  
+	  }, function(error, res, body){  
 		   if(!error){
 				if(body!= null){
 					var inko = []
 					console.log(body)
 					var i=0;
 					body.articles.forEach ( function(ink) {
-					if(i<10)
-					{
+					if(i<10){
 						inko.push({
 								"title":ink.title,
 								"image_url":ink.urlToImage,
@@ -149,13 +147,13 @@ function news(senderID){
 						i++
 					}
 					})
-				var attach = {
-					"type":"template",
-					"payload":{
-						"template_type":"generic",
-						"elements":inko
-				}
-			    }
+					var attach = {
+						"type":"template",
+						"payload":{
+							"template_type":"generic",
+							"elements":inko
+					}
+			    	}
 		   }//error
 		   else
 		   console.log(error)
