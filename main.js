@@ -123,7 +123,43 @@ request({
          )
 }
 function news(senderID){
+	request({
+	    url:"https://newsapi.org/v1/articles?source="+source+"&sortBy=top&apiKey=c0f1536a991945e8b0b19908517d7c72",
+	    json:true
 
+	  }, function(error, res, body)
+		  {  
+		   if(!error){
+				if(body!= null){
+					var inko = []
+					console.log(body)
+					var i=0;
+					body.articles.forEach ( function(ink) {
+					if(i<10)
+					{
+						inko.push({
+								"title":ink.title,
+								"image_url":ink.urlToImage,
+								"subtitle":ink.description,
+								"default_action": {
+									"type": "web_url",
+									"url":ink.url,
+								}
+						})
+						i++
+					}
+					})
+				var attach = {
+					"type":"template",
+					"payload":{
+						"template_type":"generic",
+						"elements":inko
+				}
+			    }
+		   }//error
+		   else
+		   console.log(error)
+	  })
 }
 function cricket(senderID){
 	var isIpl = false
