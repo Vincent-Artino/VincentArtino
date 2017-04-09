@@ -50,7 +50,9 @@ function receivedMessage(event){
 		processMessage(senderID,messageText.toLowerCase());
 	}
 	else if(event.message.quick_reply){
+		console.log("yep")
 		if(event.message.quick_reply.payload.includes("#score")){
+			console.log("yep")
 			text = parseInt(event.message.quick_reply.payload)
 			score(senderID,text)
 		}
