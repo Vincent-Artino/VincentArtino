@@ -99,7 +99,7 @@ request({
 				    if(body.weather[0].description!=null){
 					    console.log("into desc too")
 					    var weather= "Today, in " +body.name+ " we have " +body.weather[0].description+ " and the temperature is " +body.main.temp+" °C"
-					attach ={
+						attach ={
 					      	"type": "template",
 					      	"payload": {
 					      	"template_type":"generic",
@@ -126,7 +126,6 @@ function news(senderID){
 	request({
 	    url:"https://newsapi.org/v1/articles?source="+source+"&sortBy=top&apiKey=c0f1536a991945e8b0b19908517d7c72",
 	    json:true
-
 	  }, function(error, res, body){  
 		   if(!error){
 				if(body!= null){
@@ -152,11 +151,10 @@ function news(senderID){
 						"payload":{
 							"template_type":"generic",
 							"elements":inko
+						}
 					}
 			    	}
 		   }//error
-		   else
-		   console.log(error)
 	  })
 }
 function cricket(senderID){
