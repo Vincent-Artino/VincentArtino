@@ -46,7 +46,7 @@ function receivedMessage(event){
 	console.log("received message from "+event.sender.id + " " + JSON.stringify(event.message));
 	var messageText = message.text;
 	var messageAttachments = message.attachments;
-	if(messageText){
+	if(messageText!=undefined){
 		console.log("yea .... ")
 		processMessage(senderID,messageText.toLowerCase());
 	}
