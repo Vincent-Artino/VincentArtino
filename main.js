@@ -49,13 +49,9 @@ function receivedMessage(event){
 	if(messageText){
 		processMessage(senderID,messageText.toLowerCase());
 	}
-	else if(message.quick_reply.payload.includes("#score")){
-		console.log("yep")
-		if(event.message.quick_reply.payload.includes("#score")){
-			console.log("yep")
-			text = parseInt(event.message.quick_reply.payload)
-			score(senderID,text)
-		}
+	else {
+	console.log("yea ... ")
+	}
 	}
 	
 }
