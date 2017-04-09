@@ -52,8 +52,11 @@ function receivedMessage(event){
 		}
 		processMessage(senderID,messageText.toLowerCase());
 	}
-	else {
-	console.log("yea ... ")
+	else if(message.quick_reply){
+		if(message.quick_reply.payload.includes("#score ")){
+			score(senderID,parseInt(message.quick_reply.payload))
+		}
+		console.log("yea ... ")
 	}
 	
 }
