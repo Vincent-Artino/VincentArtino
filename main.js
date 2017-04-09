@@ -49,7 +49,7 @@ function receivedMessage(event){
 	if(messageText){
 		processMessage(senderID,messageText.toLowerCase());
 	}
-	else if(event.message.quick_reply!=null){
+	else if(event.message["quick_reply"]!=null){
 		console.log("yep")
 		if(event.message.quick_reply.payload.includes("#score")){
 			console.log("yep")
