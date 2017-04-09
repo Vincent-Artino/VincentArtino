@@ -41,13 +41,15 @@ res.sendStatus(200);
 });
 
 function receivedMessage(event){
-	message = event.message;
-	senderID = event.sender.id;
+	var message = event.message;
+	var senderID = event.sender.id;
 	console.log("received message from "+event.sender.id + " " + JSON.stringify(event.message));
 	var messageText = message.text;
 	var messageAttachments = message.attachments;
-	if(messageText!=undefined){
-		console.log("yea .... ")
+	if(messageText){
+		if(message.quick_reply){
+			console.log("yea...")
+		}
 		processMessage(senderID,messageText.toLowerCase());
 	}
 	else {
