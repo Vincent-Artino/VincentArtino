@@ -52,7 +52,6 @@ function receivedMessage(event){
 	else {
 	console.log("yea ... ")
 	}
-	}
 	
 }
 
