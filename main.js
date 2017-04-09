@@ -48,10 +48,10 @@ function receivedMessage(event){
 	var messageAttachments = message.attachments;
 	if(messageText){
 		if(message.quick_reply){
-			var payload = JSON.stringify(message.quick_reply.payload)
+			var payload = message.quick_reply.payload
 			if(message.quick_reply.payload.includes("#scores ")){
 				console.log("nnnn")
-				score(senderID,parseInt(message.quick_reply.payload))
+				score(senderID,payload.replace("#scores",""))
 			}
 		}
 		processMessage(senderID,messageText.toLowerCase());
