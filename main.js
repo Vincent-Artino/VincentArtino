@@ -48,7 +48,7 @@ function receivedMessage(event){
 	var messageAttachments = message.attachments;
 	if(messageText){
 		if(message.quick_reply){
-			var payload = message.quick_reply.payload
+			var payload = JSON.stringify(message.quick_reply.payload)
 			if(message.quick_reply.payload.includes("#score ")){
 				console.log("nnnn")
 				score(senderID,parseInt(message.quick_reply.payload))
