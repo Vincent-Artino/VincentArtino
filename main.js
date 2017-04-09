@@ -43,14 +43,12 @@ res.sendStatus(200);
 function receivedMessage(event){
 	var message = event.message;
 	var senderID = event.sender.id;
-	console.log("received message from "+event.sender.id + " " + JSON.stringify(event.message));
 	var messageText = message.text;
 	var messageAttachments = message.attachments;
 	if(messageText){
 		if(message.quick_reply){
 			var payload = message.quick_reply.payload
 			if(message.quick_reply.payload.includes("#scores ")){
-				console.log("nnnn")
 				score(senderID,payload.replace("#scores ",""))
 			}
 		}
@@ -97,8 +95,7 @@ request({
 			    if(body.weather !=null){
 				    console.log("Into body.weather")
 				    if(body.weather[0].description!=null){
-					    console.log("into desc too")
-					    var weather= "Today, in " +body.name+ " we have " +body.weather[0].description+ " and the temperature is " +body.main.temp+" °C"
+						var weather= "Today, in " +body.name+ " we have " +body.weather[0].description+ " and the temperature is " +body.main.temp+" °C"
 						attach ={
 					      	"type": "template",
 					      	"payload": {
@@ -130,7 +127,6 @@ function news(senderID){
 		   if(!error){
 				if(body!= null){
 					var inko = []
-					console.log(body)
 					var i=0;
 					body.articles.forEach ( function(ink) {
 					if(i<10){
@@ -153,6 +149,7 @@ function news(senderID){
 							"elements":inko
 						}
 					}
+					sendAttachment(senderID,attach)
 			    	}
 		   }//error
 	  })
