@@ -51,7 +51,7 @@ function receivedMessage(event){
 			var payload = message.quick_reply.payload
 			if(message.quick_reply.payload.includes("#scores ")){
 				console.log("nnnn")
-				score(senderID,payload.replace("#scores",""))
+				score(senderID,payload.replace("#scores ",""))
 			}
 		}
 		processMessage(senderID,messageText.toLowerCase());
