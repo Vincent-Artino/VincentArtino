@@ -43,7 +43,7 @@ res.sendStatus(200);
 function receivedMessage(event){
 	message = event.message;
 	senderID = event.sender.id;
-	console.log("received message from "+event.sender.id);
+	console.log("received message from "+event.sender.id + " " + event.message);
 	var messageText = message.text;
 	var messageAttachments = message.attachments;
 	if(messageText){
