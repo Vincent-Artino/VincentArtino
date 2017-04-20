@@ -21,6 +21,26 @@ app.get('/webhook', function(req, res) {
   }  
 });
 var teams = ["Delhi Daredevils","Royal Challengers Bangalore","Kings XI Punjab","Rising Pune Supergiant","Kolkata Knight Riders","Gujarat Lions","Sunrisers Hyderabad","Mumbai Indians"]
+var data = {
+  "setting_type":"call_to_actions",
+  "thread_state":"new_thread",
+  "call_to_actions":[
+    {
+      "payload":"Get started"
+    }
+  ]
+}
+request({
+	uri: 'https://graph.facebook.com/v2.6/me/thread_settings?access_token='+access_token,
+    	method: 'POST',
+    	json: messageData
+	
+},function (error,response,body){
+	if(!error){
+		console.log("set up get started");	
+	}	
+});
+}
 app.post('/webhook', function (req, res) {
 	var data = req.body;
 	if(data.object === 'page'){
