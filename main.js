@@ -34,7 +34,7 @@ var GetStartedButton = {
 var greetingText = {
   "setting_type":"greeting",
   "greeting":{
-    "text":"Hi {{user_first_name}}, i am "+bot_name + "a general purpose chatbot.\\n click on get started to know what i can help you with "
+    "text":"Hi {{user_first_name}}, i am "+bot_name + " a general purpose chatbot.\\n\\r click on get started to know what i can help you with "
   }
 }
 threadSetUp(GetStartedButton)
