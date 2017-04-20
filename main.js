@@ -517,7 +517,7 @@ request({
 }
 function threadSetUp(messageData){
 request({
-	uri: 'https://graph.facebook.com/v2.6/me/messenger_profile&access_token='+access_token,
+	uri: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+access_token,
     	method: 'POST',
     	json: messageData
 	
