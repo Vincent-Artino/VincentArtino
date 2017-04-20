@@ -34,11 +34,55 @@ var GetStartedButton = {
 var greetingText = {
   "setting_type":"greeting",
   "greeting":{
-    "text":"Hi {{user_first_name}}, i am "+bot_name + " a general purpose chatbot.\n\r click on get started to know what i can help you with "
+    "text":"Hi {{user_first_name}},Click on Get Started to know what i can help you with."
   }
+}
+var persistentMenu = {
+  "persistent_menu":[
+    {
+      "locale":"default",
+      "composer_input_disabled":true,
+      "call_to_actions":[
+        {
+          "title":"Settings",
+          "type":"nested",
+          "call_to_actions":[
+            {
+              "title":"Weather",
+              "type":"postback",
+              "payload":"weather postback"
+            },
+            {
+              "title":"Location",
+              "type":"postback",
+              "payload":"location payload"
+            },
+            {
+              "title":"News",
+              "type":"postback",
+              "payload":"news payload"
+            }
+          ]
+        },
+        {
+          "type":"postback",
+          "title":"Help",
+        }
+      	{
+	  "type":"postback",
+	  "title":"About me"
+      	}
+      ]
+    },
+    {
+      "locale":"zh_CN",
+      "composer_input_disabled":false
+    }
+  ]
 }
 threadSetUp(GetStartedButton)
 threadSetUp(greetingText)
+threadSetUp(persistentMenu)
 app.post('/webhook', function (req, res) {
 	var data = req.body;
 	if(data.object === 'page'){
@@ -51,7 +95,7 @@ app.post('/webhook', function (req, res) {
 		}
 		else if(event.postback){
 			if(event.postback.payload.equals('Get started')){
-				
+				sendTextMessage(event.sender.id,"")
 			}
 		}
 		else{
@@ -59,6 +103,7 @@ app.post('/webhook', function (req, res) {
 		}
 	});
 });
+
 res.sendStatus(200);
 }
 });
@@ -472,7 +517,7 @@ request({
 }
 function threadSetUp(messageData){
 request({
-	uri: 'https://graph.facebook.com/v2.6/me/thread_settings?access_token='+access_token,
+	uri: 'https://graph.facebook.com/v2.6/me/messenger_profile?fields=get_started&access_token='+access_token,
     	method: 'POST',
     	json: messageData
 	
