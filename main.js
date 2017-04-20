@@ -94,8 +94,8 @@ app.post('/webhook', function (req, res) {
 			receivedMessage(event);		
 		}
 		else if(event.postback){
-			if(event.postback.payload.equals('Get started')){
-				sendTextMessage(event.sender.id,"")
+			if(event.postback.payload=='Get started'){
+				sendTextMessage(event.sender.id,"Hello {{user_first_name}}")
 			}
 		}
 		else{
