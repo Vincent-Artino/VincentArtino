@@ -34,7 +34,7 @@ var GetStartedButton = {
 var greetingText = {
   "setting_type":"greeting",
   "greeting":{
-    "text":"Hi {{user_first_name}}, i am "+bot_name
+    "text":"Hi {{user_first_name}}, i am "+bot_name + "a general purpose chatbot.\\n click on get started to know what i can help you with "
   }
 }
 threadSetUp(GetStartedButton)
@@ -49,8 +49,13 @@ app.post('/webhook', function (req, res) {
 		if(event.message){
 			receivedMessage(event);		
 		}
+		else if(event.postback){
+			if(event.postback.payload.equals('Get started')){
+				
+			}
+		}
 		else{
-			//console.log("Unknown event : ",event);
+			console.log("Unknown event : ",event);
 		}
 	});
 });
@@ -97,7 +102,9 @@ function processMessage(senderID,messageText){
 	else if(messageText.includes("#news")){
 			news(senderID)
 	}
-	
+	else if(messageText.includes("#places")){
+			places(senderID)
+	}
 	return messageText;
 }
 function weather(senderID,text){
