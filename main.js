@@ -67,7 +67,7 @@ var persistentMenu = {
         {
           "type":"postback",
           "title":"Help",
-        }
+        },
       	{
 	  "type":"postback",
 	  "title":"About me"
