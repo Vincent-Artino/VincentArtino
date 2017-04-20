@@ -4,6 +4,7 @@ request = require('request');
 var app = express();
 port = Number(process.env.PORT || 5000);
 var city,text,temp,temperature;
+var bot_name = "vincent"
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({
     extended: true
@@ -21,7 +22,7 @@ app.get('/webhook', function(req, res) {
   }  
 });
 var teams = ["Delhi Daredevils","Royal Challengers Bangalore","Kings XI Punjab","Rising Pune Supergiant","Kolkata Knight Riders","Gujarat Lions","Sunrisers Hyderabad","Mumbai Indians"]
-var data = {
+var GetStartedButton = {
   "setting_type":"call_to_actions",
   "thread_state":"new_thread",
   "call_to_actions":[
@@ -30,17 +31,14 @@ var data = {
     }
   ]
 }
-request({
-	uri: 'https://graph.facebook.com/v2.6/me/thread_settings?access_token='+access_token,
-    	method: 'POST',
-    	json: messageData
-	
-},function (error,response,body){
-	if(!error){
-		console.log("set up get started");	
-	}	
-});
+var greetingText = {
+  "setting_type":"greeting",
+  "greeting":{
+    "text":"Hi {{user_first_name}}, i am "+bot_name
+  }
 }
+threadSetUp(GetStartedButton)
+threadSetUp(greetingText)
 app.post('/webhook', function (req, res) {
 	var data = req.body;
 	if(data.object === 'page'){
@@ -464,5 +462,18 @@ request({
 		console.log("message sent");	
 	}	
 });
+}
+function threadSetUp(messageData){
+request({
+	uri: 'https://graph.facebook.com/v2.6/me/thread_settings?access_token='+access_token,
+    	method: 'POST',
+    	json: messageData
+	
+},function (error,response,body){
+	if(!error){
+		console.log("set up complete");	
+	}	
+});
+
 }
 app.listen(port);
