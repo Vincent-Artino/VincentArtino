@@ -154,7 +154,7 @@ function receivedMessage(event){
 			}
 		}
 		else if(message.location){
-			if(location[senderID]['lat']=='NA'&&location[senderID]['lon']='NA'){
+			if(location[senderID]['lat']=='NA'&&location[senderID]['lon']=='NA'){
 				location[senderID]['lat']=message.location.coordinates.lat
 				location[senderID]['lon']=message.location.coordinates.long
 			}
