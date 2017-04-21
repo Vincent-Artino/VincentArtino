@@ -86,7 +86,7 @@ var persistentMenu = {
 }
 threadSetUp(GetStartedButton)
 threadSetUp(greetingText)
-threadSetUp(persistentMenu)
+//threadSetUp(persistentMenu)
 app.post('/webhook', function (req, res) {
 	var data = req.body;
 	if(data.object === 'page'){
@@ -123,9 +123,7 @@ function getDetails(senderID){
 	request({
 		uri: 'https://graph.facebook.com/v2.6/'+senderID+'?fields=first_name,last_name,gender&access_token='+access_token,
 		qs: { access_token: access_token },
-		method: 'GET',
-		json: messageData
-
+		method: 'GET'
 	},function (error,response,body){
 		if(!error){
 			console.log(body)
