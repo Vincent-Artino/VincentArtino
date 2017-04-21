@@ -10,6 +10,10 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+var location = []
+var first_name = []
+var last_name = []
+var gender = []
 access_token="EAAXo0ZADqGgkBAFRAoQYZB8zZAGr47ci68Q17zBqWKsiiLImBMZAuZBIJd3R7k7pSEBPlHHKOTv4AADnZBQwNZBVQg34ky7hFgbQukq8ZAeGyan9IV5MPDKrYaYC5zopBum5YDSj5ruiWDTSAeCAGYWLVh9XZAoVZC16FJ1qpusiGjFAZDZD";
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
@@ -95,7 +99,14 @@ app.post('/webhook', function (req, res) {
 		}
 		else if(event.postback){
 			if(event.postback.payload=='Get started'){
-				sendTextMessage(event.sender.id,"Hello {{user_first_name}}")
+				getDetails(event.sender.id)
+				sendTextMessage(event.sender.id,"Hello "+first_name[event.sender.id])
+				var location = [
+				      {
+					"content_type":"location",
+				      }
+				]
+				sendQuick(event.sender.id,"please set a default location",location)
 			}
 		}
 		else{
@@ -108,6 +119,25 @@ res.sendStatus(200);
 }
 });
 
+function getDetails(senderID){
+	request({
+		uri: 'https://graph.facebook.com/v2.6/'+senderID+'?fields=first_name,last_name,gender&access_token='+access_token,
+		qs: { access_token: access_token },
+		method: 'GET',
+		json: messageData
+
+	},function (error,response,body){
+		if(!error){
+			console.log(body)
+			first_name[senderID] = body.first_name
+			last_name[senderID] = body.last_name
+			gender[senderID] = body.gender
+			location[senderID]['lat']='NA'
+			location[senderID]['lon']='NA'
+		}	
+	});
+}
+
 function receivedMessage(event){
 	var message = event.message;
 	var senderID = event.sender.id;
@@ -119,7 +149,17 @@ function receivedMessage(event){
 			if(message.quick_reply.payload.includes("#scores ")){
 				score(senderID,payload.replace("#scores ",""))
 			}
+			else if(message.quick_reply.payload.includes("#pl ")){
+				
+			}
 		}
+		else if(message.location){
+			if(location[senderID]['lat']=='NA'&&location[senderID]['lon']='NA'){
+				location[senderID]['lat']=message.location.coordinates.lat
+				location[senderID]['lon']=message.location.coordinates.long
+			}
+		}
+		else
 		processMessage(senderID,messageText.toLowerCase());
 	}
 	
@@ -150,7 +190,26 @@ function processMessage(senderID,messageText){
 	else if(messageText.includes("#places")){
 			places(senderID)
 	}
-	return messageText;
+}
+function places(senderID){
+var data = [{
+		"content_type":"text",
+		"title":"hospitals",
+		"payload":"#pl hospital"
+	},{
+		"content_type":"text",
+		"title":"restaurants",
+		"payload":"#pl restaurant"
+	},{
+		"content_type":"text",
+		"title":"atms",
+		"payload":"#pl atm"
+	},{
+		"content_type":"text",
+		"title":"shopping mall",
+		"payload":"#pl shopping_mall"
+	}]
+sendQuick(senderID,"looking at..",data)
 }
 function weather(senderID,text){
 text = text.replace("weather in ","")
