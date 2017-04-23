@@ -11,9 +11,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 var location = []
-var first_name = []
-var last_name = []
-var gender = []
 access_token="EAAXo0ZADqGgkBAFRAoQYZB8zZAGr47ci68Q17zBqWKsiiLImBMZAuZBIJd3R7k7pSEBPlHHKOTv4AADnZBQwNZBVQg34ky7hFgbQukq8ZAeGyan9IV5MPDKrYaYC5zopBum5YDSj5ruiWDTSAeCAGYWLVh9XZAoVZC16FJ1qpusiGjFAZDZD";
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
@@ -123,11 +120,10 @@ function getDetails(senderID){
 	},function (error,response,body){
 		if(!error){
 			console.log(body)
-			first_name[senderID.toString()] = body.first_name
-			last_name[senderID.toString()] = body.last_name
-			gender[senderID.toString()] = body.gender
-			location[senderID.toString()]['lat']='NA'
-			location[senderID.toString()]['lon']='NA'
+			var loc = []
+			loc['lat']='NA'
+			loc['lon']='NA'
+			location[senderID.toString()]=loc
 		}	
 	});
 }
@@ -149,8 +145,8 @@ function receivedMessage(event){
 		}
 		else if(message.location){
 			if(location[senderID]['lat']=='NA'&&location[senderID]['lon']=='NA'){
-				location[senderID]['lat']=message.location.coordinates.lat
-				location[senderID]['lon']=message.location.coordinates.long
+				location[senderID.toString()]['lat']=message.location.coordinates.lat
+				location[senderID.toString()]['lon']=message.location.coordinates.long
 			}
 		}
 		else
