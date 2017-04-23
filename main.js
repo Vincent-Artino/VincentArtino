@@ -43,7 +43,7 @@ var persistentMenu = {
   "persistent_menu":[
     {
       "locale":"default",
-      "composer_input_disabled":true,
+      "composer_input_disabled":false,
       "call_to_actions":[
         {
           "title":"Settings",
@@ -123,11 +123,11 @@ function getDetails(senderID){
 	},function (error,response,body){
 		if(!error){
 			console.log(body)
-			first_name[senderID] = body.first_name
-			last_name[senderID] = body.last_name
-			gender[senderID] = body.gender
-			location[senderID]['lat']='NA'
-			location[senderID]['lon']='NA'
+			first_name[senderID.toString()] = body.first_name
+			last_name[senderID.toString()] = body.last_name
+			gender[senderID.toString()] = body.gender
+			location[senderID.toString()]['lat']='NA'
+			location[senderID.toString()]['lon']='NA'
 		}	
 	});
 }
