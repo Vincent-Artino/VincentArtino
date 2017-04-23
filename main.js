@@ -578,7 +578,7 @@ request({
 	
 },function (error,response,body){
 	if(!error){
-		console.log("set up complete");	
+		console.log("set up complete "+body);	
 	}	
 });
 
