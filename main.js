@@ -27,19 +27,17 @@ app.get('/webhook', function(req, res) {
 });
 var teams = ["Delhi Daredevils","Royal Challengers Bangalore","Kings XI Punjab","Rising Pune Supergiant","Kolkata Knight Riders","Gujarat Lions","Sunrisers Hyderabad","Mumbai Indians"]
 var GetStartedButton = {
-  "setting_type":"call_to_actions",
-  "thread_state":"new_thread",
-  "call_to_actions":[
-    {
-      "payload":"Get started"
-    }
-  ]
+  "get_started":{
+    "payload":"Get started"
+  }
 }
 var greetingText = {
-  "setting_type":"greeting",
-  "greeting":{
-    "text":"Hi {{user_first_name}},Click on Get Started to know what i can help you with."
-  }
+  "greeting":[
+    {
+      "locale":"default",
+      "text":"Hello!"
+    }
+  ]
 }
 var persistentMenu = {
   "persistent_menu":[
@@ -84,9 +82,9 @@ var persistentMenu = {
     }
   ]
 }
-//threadSetUp(GetStartedButton)
-//threadSetUp(greetingText)
-//threadSetUp(persistentMenu)
+threadSetUp(GetStartedButton)
+threadSetUp(greetingText)
+threadSetUp(persistentMenu)
 app.post('/webhook', function (req, res) {
 	var data = req.body;
 	if(data.object === 'page'){
@@ -574,7 +572,7 @@ request({
 }
 function threadSetUp(messageData){
 request({
-	uri: 'https://graph.facebook.com/v2.6/me/thread_settings?access_token='+access_token,
+	uri: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+access_token,
     	method: 'POST',
     	json: messageData
 	
