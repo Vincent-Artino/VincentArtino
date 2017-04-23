@@ -73,8 +73,8 @@ var persistentMenu = {
         },
       	{
 	  "type":"postback",
-	  "title":"About me"
-	  "payload":"help"
+	  "title":"About me",
+	  "payload":"about"
       	}
       ]
     }
