@@ -75,10 +75,6 @@ var persistentMenu = {
 	  "title":"About me"
       	}
       ]
-    },
-    {
-      "locale":"zh_CN",
-      "composer_input_disabled":false
     }
   ]
 }
@@ -578,7 +574,7 @@ request({
 	
 },function (error,response,body){
 	if(!error){
-		console.log("set up complete "+body);	
+		console.log("set up complete "+JSON.parse(body));	
 	}	
 });
 
