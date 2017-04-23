@@ -77,9 +77,9 @@ var persistentMenu = {
     }
   ]
 }
-threadSetUp(GetStartedButton)
-threadSetUp(greetingText)
-threadSetUp(persistentMenu)
+//threadSetUp(GetStartedButton)
+//threadSetUp(greetingText)
+//threadSetUp(persistentMenu)
 app.post('/webhook', function (req, res) {
 	var data = req.body;
 	if(data.object === 'page'){
@@ -93,7 +93,7 @@ app.post('/webhook', function (req, res) {
 		else if(event.postback){
 			if(event.postback.payload=='Get started'){
 				getDetails(event.sender.id)
-				sendTextMessage(event.sender.id,"Hello "+first_name[event.sender.id])
+				sendTextMessage(event.sender.id,"Hello "+getFirstName(event.sender.id))
 				var location = [
 				      {
 					"content_type":"location",
@@ -198,6 +198,14 @@ var data = [{
 		"content_type":"text",
 		"title":"shopping mall",
 		"payload":"#pl shopping_mall"
+	},{
+	    	"content_type":"text",
+		"title":"Hotels & lodging",
+		"payload":"#pl lodging"
+	},{
+		"content_type":"text",
+		"title":"Bus station",
+		"payload":"#pl bus_station"
 	}]
 sendQuick(senderID,"looking at..",data)
 }
@@ -575,6 +583,18 @@ request({
 		console.log("set up complete "+JSON.stringify(body));	
 	}	
 });
-
+}
+function getFirstName(senderID){
+	var first_name
+	request({
+		uri: 'https://graph.facebook.com/v2.6/'+senderID +'?fields=first_name&access_token='+access_token,
+		method: 'GET',	
+	},function (error,response,body){
+		if(!error){
+			console.log(body.first_name)
+			first_name = body.first_name
+		}	
+	});
+	return first_name
 }
 app.listen(port);
