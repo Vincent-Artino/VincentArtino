@@ -69,10 +69,12 @@ var persistentMenu = {
         {
           "type":"postback",
           "title":"Help",
+	  "payload":"help"	
         },
       	{
 	  "type":"postback",
 	  "title":"About me"
+	  "payload":"help"
       	}
       ]
     }
