@@ -253,7 +253,7 @@ function places(senderID,text){
 						if(i<10&&elem.photos){
 							data.push({
 									"title":elem.name,
-									"image_url":imgBaseURL+elem.photos[0].photo_reference,
+									"image_url":"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8",
 							})
 							i++
 						}    	
@@ -266,11 +266,6 @@ function places(senderID,text){
 						}
 					}
 					sendAttachment(senderID,attach)  
-				   request({
-					    url:"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8"
-					  }, function(error, res, body){
-				   	console.log(body)
-				   })
 			   }//error
 			   else
 			   console.log(error)
