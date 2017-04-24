@@ -153,11 +153,11 @@ function receivedMessage(event){
 	}
 	else if(messageAttachments){
 			console.log(messageAttachments)
-			console.log(messageAttachments.payload)
+			console.log(messageAttachments[0].payload)
 			if(location[senderID.toString()]['lat']=='NA'&&location[senderID.toString()]['lon']=='NA'){
 				var loc = []
-				loc['lat']=messageAttachments.payload.coordinates.lat
-				loc['lon']=messageAttachments.payload.coordinates.long
+				loc['lat']=messageAttachments[0].payload.coordinates.lat
+				loc['lon']=messageAttachments[0].payload.coordinates.long
 				location[senderID.toString()]=loc
 				console.log("set")
 			}
