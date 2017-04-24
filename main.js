@@ -655,7 +655,7 @@ var data = {"whitelisted_domains":[
   ]}
 request({
 		uri: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+access_token,
-		method: 'POST'
+		method: 'POST',
 		json : data
 	},function (error,response,body){
 		if(!error){
