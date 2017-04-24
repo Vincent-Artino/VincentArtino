@@ -69,9 +69,9 @@ var persistentMenu = {
           ]
         },
         {
-          "type":"postback",
+          "type":"web_url",
           "title":"Help",
-	  "payload":"help"	
+	  "url":"https://lavender-shade.herokuapp.com/"	
         },
       	{
 	  "type":"postback",
@@ -85,6 +85,7 @@ var persistentMenu = {
 //threadSetUp(GetStartedButton)
 //threadSetUp(greetingText)
 //threadSetUp(persistentMenu)
+webViewSetUp()
 app.post('/webhook', function (req, res) {
 	var data = req.body;
 	if(data.object === 'page'){
@@ -647,6 +648,20 @@ request({
 		console.log("set up complete "+JSON.stringify(body));	
 	}	
 });
+}
+function webViewSetUp(){
+var data = "whitelisted_domains":[
+    "https://lavender-shade.herokuapp.com/"
+  ]
+request({
+		uri: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+access_token,
+		method: 'POST'
+		json : data
+	},function (error,response,body){
+		if(!error){
+			console.log(body)
+		}	
+	});
 }
 function getFirstName(senderID){
 	var first_name
