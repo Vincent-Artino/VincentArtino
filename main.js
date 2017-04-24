@@ -239,7 +239,7 @@ function places(senderID,text){
 					var i = 0
 					body.results.forEach(function(elem){
 						console.log(elem.photos)
-						if(i<10){
+						if(i<10&&elem.photos){
 							data.push({
 									"title":elem.name,
 									"image_url":imgBaseURL+elem.photos[0].photo_reference,
