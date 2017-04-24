@@ -195,7 +195,7 @@ function processMessage(senderID,messageText){
 	}
 }
 function places(senderID,text){
-	var query = text.replace("#pl ")
+	var query = text.replace("#pl ","")
 	console.log("in places "+location)
 	var coord = location[senderID.toString()]['lat']+","+location[senderID.toString()]['lon']
 	var imgBaseURL = "https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8&photoreference="
