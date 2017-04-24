@@ -145,7 +145,7 @@ function receivedMessage(event){
 				score(senderID,payload.replace("#scores ",""))
 			}
 			else if(message.quick_reply.payload.includes("#pl ")){
-				
+				places(senderID,message.quick_reply.payload)
 			}
 		}
 		else
@@ -192,37 +192,73 @@ function processMessage(senderID,messageText){
 			news(senderID)
 	}
 	else if(messageText.includes("#places")){
-			places(senderID)
+			places(senderID,"#pl ")
 	}
 }
-function places(senderID){
-var data = [{
-		"content_type":"text",
-		"title":"hospitals",
-		"payload":"#pl hospital"
-	},{
-		"content_type":"text",
-		"title":"restaurants",
-		"payload":"#pl restaurant"
-	},{
-		"content_type":"text",
-		"title":"atms",
-		"payload":"#pl atm"
-	},{
-		"content_type":"text",
-		"title":"shopping mall",
-		"payload":"#pl shopping_mall"
-	},{
-	    	"content_type":"text",
-		"title":"Hotels & lodging",
-		"payload":"#pl lodging"
-	},{
-		"content_type":"text",
-		"title":"Bus station",
-		"payload":"#pl bus_station"
-	}]
-	console.log(location[senderID.toString()])
-	sendQuick(senderID,"looking at..",data)	
+function places(senderID,text){
+	var query = text.replace("#pl ")
+	var coord = location[senderID.toString()]['lat']+","+location[senderID.toString()]['lon']
+	var imgBaseURL = "https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8&photoreference="
+	console.log(coord)
+	if(query==''){
+		var data = [{
+				"content_type":"text",
+				"title":"hospitals",
+				"payload":"#pl hospital"
+			},{
+				"content_type":"text",
+				"title":"restaurants",
+				"payload":"#pl restaurant"
+			},{
+				"content_type":"text",
+				"title":"atms",
+				"payload":"#pl atm"
+			},{
+				"content_type":"text",
+				"title":"shopping mall",
+				"payload":"#pl shopping_mall"
+			},{
+				"content_type":"text",
+				"title":"Hotels & lodging",
+				"payload":"#pl lodging"
+			},{
+				"content_type":"text",
+				"title":"Bus station",
+				"payload":"#pl bus_station"
+			}]
+		console.log(location[senderID.toString()])
+		sendQuick(senderID,"looking at..",data)	
+	}
+	else{
+		request({
+		  url:"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+coord+"&radius=1000&type="+query+"&key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8",
+		  json:true
+		}, function(error, res, body){
+			   if(!error){
+				   	var data = []
+					var i = 0
+					body.results.forEach(function(elem){
+						if(i<10){
+							data.push({
+									"title":elem.name,
+									"image_url":imgBaseURL+elem.photos.photo_reference,
+							})
+							i++
+						}    	
+				    	})
+				   	var attach = {
+						"type":"template",
+						"payload":{
+							"template_type":"generic",
+							"elements":data
+						}
+					}
+					sendAttachment(senderID,data)
+			   }//error
+			   else
+			   console.log(error)
+		  })
+	}
 }
 function weather(senderID,text){
 text = text.replace("weather in ","")
