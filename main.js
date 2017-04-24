@@ -151,7 +151,7 @@ function receivedMessage(event){
 		processMessage(senderID,messageText.toLowerCase());
 	}
 	else if(messageAttachments){
-			console.log(location[senderID.toString()])
+			console.log(messageAttachments)
 			if(location[senderID.toString()]['lat']=='NA'&&location[senderID.toString()]['lon']=='NA'){
 				var loc = []
 				loc['lat']=messageAttachments.location.coordinates.lat
