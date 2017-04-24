@@ -197,7 +197,7 @@ function processMessage(senderID,messageText){
 function places(senderID,text){
 	var query = text.replace("#pl ","")
 	console.log("in places "+location)
-	if(location)
+	if(location[senderID.toString()])
 		var coord = location[senderID.toString()]['lat']+","+location[senderID.toString()]['lon']
 	else
 		var coord = "17.3850,78.4867"
