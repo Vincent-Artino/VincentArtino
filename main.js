@@ -249,11 +249,11 @@ function places(senderID,text){
 				   	var data = []
 					var i = 0
 					body.results.forEach(function(elem){
-						console.log(elem.photos)
+						console.log(elem.photos[0])
 						if(i<10&&elem.photos){
 							data.push({
 									"title":elem.name,
-									"image_url":"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8",
+									"image_url":"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+elem.photos[0].photo_reference+"&key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8",
 							})
 							i++
 						}    	
