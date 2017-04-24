@@ -134,7 +134,7 @@ function receivedMessage(event){
 	var messageText = message.text;
 	var messageAttachments = message.attachments;
 	if(messageText){
-		console.log(message)
+		
 		if(message.quick_reply){
 			var payload = message.quick_reply.payload
 			if(message.quick_reply.payload.includes("#scores ")){
@@ -144,7 +144,11 @@ function receivedMessage(event){
 				
 			}
 		}
-		else if(message.location){
+		else
+		processMessage(senderID,messageText.toLowerCase());
+	}
+	else if(message.location){
+			console.log(message)
 			if(location[senderID]['lat']=='NA'&&location[senderID]['lon']=='NA'){
 				var loc = []
 				loc['lat']=message.location.coordinates.lat
@@ -155,10 +159,9 @@ function receivedMessage(event){
 			console.log(message.location.coordinates)
 			snedTextMessage(senderID,"Default Location set!!")
 		}
-		else
-		processMessage(senderID,messageText.toLowerCase());
+	else{
+	console.log(event)
 	}
-	
 }
 
 function processMessage(senderID,messageText){
