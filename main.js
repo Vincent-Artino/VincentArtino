@@ -241,7 +241,7 @@ function places(senderID,text){
 						if(i<10){
 							data.push({
 									"title":elem.name,
-									"image_url":imgBaseURL+elem.photos.photo_reference,
+									"image_url":imgBaseURL+elem.photos[0].photo_reference,
 							})
 							i++
 						}    	
