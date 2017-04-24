@@ -249,8 +249,8 @@ function places(senderID,text){
 				   	var data = []
 					var i = 0
 					body.results.forEach(function(elem){
-						console.log(elem.photos[0])
 						if(i<10&&elem.photos){
+							console.log(elem.photos[0])
 							data.push({
 									"title":elem.name,
 									"image_url":"https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+elem.photos[0].photo_reference+"&key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8",
