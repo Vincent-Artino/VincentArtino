@@ -154,8 +154,8 @@ function receivedMessage(event){
 			console.log(messageAttachments)
 			if(location[senderID.toString()]['lat']=='NA'&&location[senderID.toString()]['lon']=='NA'){
 				var loc = []
-				loc['lat']=messageAttachments.payload.location.coordinates.lat
-				loc['lon']=messageAttachments.payload.location.coordinates.long
+				loc['lat']=messageAttachments.payload.coordinates.lat
+				loc['lon']=messageAttachments.payload.coordinates.long
 				location[senderID.toString()]=loc
 				console.log("set")
 			}
