@@ -93,7 +93,7 @@ app.post('/webhook', function (req, res) {
 		else if(event.postback){
 			if(event.postback.payload=='Get started'){
 				getDetails(event.sender.id)
-				sendTextMessage(event.sender.id,"Hello "+getFirstName(event.sender.id))
+				//sendTextMessage(event.sender.id,"Hello "+getFirstName(event.sender.id))
 				var location = [
 				      {
 					"content_type":"location",
@@ -597,7 +597,7 @@ function getFirstName(senderID){
 		method: 'GET',	
 	},function (error,response,body){
 		if(!error){
-			console.log(body.first_name)
+			console.log(body)
 			first_name = body.first_name
 		}	
 	});
