@@ -255,7 +255,7 @@ function places(senderID,text){
 						}
 					}
 					sendAttachment(senderID,attach)
-				//error
+			   }//error
 			   else
 			   console.log(error)
 		  })
