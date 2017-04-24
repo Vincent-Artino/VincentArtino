@@ -134,6 +134,7 @@ function receivedMessage(event){
 	var messageText = message.text;
 	var messageAttachments = message.attachments;
 	if(messageText){
+		console.log(message)
 		if(message.quick_reply){
 			var payload = message.quick_reply.payload
 			if(message.quick_reply.payload.includes("#scores ")){
