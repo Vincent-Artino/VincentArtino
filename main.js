@@ -150,7 +150,7 @@ function receivedMessage(event){
 		else
 		processMessage(senderID,messageText.toLowerCase());
 	}
-	else if(messageAttachments.type=='location'){
+	else if(messageAttachments){
 			console.log(messageAttachments)
 			if(location[senderID.toString()]['lat']=='NA'&&location[senderID.toString()]['lon']=='NA'){
 				var loc = []
