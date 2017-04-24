@@ -207,7 +207,8 @@ var data = [{
 		"title":"Bus station",
 		"payload":"#pl bus_station"
 	}]
-sendQuick(senderID,"looking at..",data)
+	console.log(location[senderID.toString()])
+	sendQuick(senderID,"looking at..",data)	
 }
 function weather(senderID,text){
 text = text.replace("weather in ","")
