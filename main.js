@@ -1,6 +1,7 @@
 express = require('express');
 https = require('https');
 request = require('request');
+var path = require('path')
 var app = express();
 port = Number(process.env.PORT || 5000);
 var city,text,temp,temperature;
@@ -9,6 +10,7 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.json());
 var location = []
 access_token="EAAXo0ZADqGgkBAFRAoQYZB8zZAGr47ci68Q17zBqWKsiiLImBMZAuZBIJd3R7k7pSEBPlHHKOTv4AADnZBQwNZBVQg34ky7hFgbQukq8ZAeGyan9IV5MPDKrYaYC5zopBum5YDSj5ruiWDTSAeCAGYWLVh9XZAoVZC16FJ1qpusiGjFAZDZD";
