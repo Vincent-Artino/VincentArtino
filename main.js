@@ -92,7 +92,7 @@ app.post('/webhook', function (req, res) {
 		}
 		else if(event.postback){
 			if(event.postback.payload=='Get started'){
-				getDetails(event.sender.id)
+				console.log(getDetails(event.sender.id))
 				//sendTextMessage(event.sender.id,"Hello "+getFirstName(event.sender.id))
 				var location = [
 				      {
@@ -113,6 +113,7 @@ res.sendStatus(200);
 });
 
 function getDetails(senderID){
+	var first_name
 	request({
 		uri: 'https://graph.facebook.com/v2.6/'+senderID+'?fields=first_name,last_name,gender&access_token='+access_token,
 		qs: { access_token: access_token },
@@ -124,8 +125,10 @@ function getDetails(senderID){
 			loc['lat']='NA'
 			loc['lon']='NA'
 			location[senderID.toString()]=loc
+			first_name = body.first_name
 		}	
 	});
+	return first_name
 }
 
 function receivedMessage(event){
@@ -147,7 +150,7 @@ function receivedMessage(event){
 		else
 		processMessage(senderID,messageText.toLowerCase());
 	}
-	else if(message.location){
+	else if(message.attachments.location){
 			console.log(message)
 			if(location[senderID]['lat']=='NA'&&location[senderID]['lon']=='NA'){
 				var loc = []
