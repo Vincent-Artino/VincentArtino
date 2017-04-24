@@ -144,7 +144,7 @@ function receivedMessage(event){
 	var senderID = event.sender.id;
 	var messageText = message.text;
 	var messageAttachments = message.attachments 
-.type	console.log(messageAttachments)
+	console.log(messageAttachments.type)
 	if(messageText){
 		if(message.quick_reply){
 			var payload = message.quick_reply.payload
