@@ -151,11 +151,11 @@ function receivedMessage(event){
 		processMessage(senderID,messageText.toLowerCase());
 	}
 	else if(messageAttachments){
-			console.log(message)
-			if(location[senderID]['lat']=='NA'&&location[senderID]['lon']=='NA'){
+			console.log(message+" "+location[senderID.toString()])
+			if(location[senderID.toString()]['lat']=='NA'&&location[senderID.toSTring()]['lon']=='NA'){
 				var loc = []
-				loc['lat']=message.location.coordinates.lat
-				loc['lon']=message.location.coordinates.long
+				loc['lat']=messageAttachments.location.coordinates.lat
+				loc['lon']=messageAttachments.location.coordinates.long
 				location[senderID.toString()]=loc
 				console.log("set")
 			}
