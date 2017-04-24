@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 var location = []
 access_token="EAAXo0ZADqGgkBAFRAoQYZB8zZAGr47ci68Q17zBqWKsiiLImBMZAuZBIJd3R7k7pSEBPlHHKOTv4AADnZBQwNZBVQg34ky7hFgbQukq8ZAeGyan9IV5MPDKrYaYC5zopBum5YDSj5ruiWDTSAeCAGYWLVh9XZAoVZC16FJ1qpusiGjFAZDZD";
 app.get('/', function (req, res) {
-  res.sendFile(path.join('views/index.html'));
+  res.sendFile(path.join(__dirname+'/views/index.html'));
 });
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
