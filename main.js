@@ -650,9 +650,9 @@ request({
 });
 }
 function webViewSetUp(){
-var data = "whitelisted_domains":[
+var data = {"whitelisted_domains":[
     "https://lavender-shade.herokuapp.com/"
-  ]
+  ]}
 request({
 		uri: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+access_token,
 		method: 'POST'
