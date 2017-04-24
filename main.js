@@ -113,7 +113,7 @@ res.sendStatus(200);
 });
 
 function getDetails(senderID){
-	var first_name
+	var first_name=""
 	request({
 		uri: 'https://graph.facebook.com/v2.6/'+senderID+'?fields=first_name,last_name,gender&access_token='+access_token,
 		qs: { access_token: access_token },
@@ -135,7 +135,7 @@ function receivedMessage(event){
 	var message = event.message;
 	var senderID = event.sender.id;
 	var messageText = message.text;
-	var messageAttachments = message.attachm
+	var messageAttachments = message.attachments 
 	if(messageText){
 		
 		if(message.quick_reply){
