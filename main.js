@@ -144,7 +144,7 @@ function receivedMessage(event){
 	var senderID = event.sender.id;
 	var messageText = message.text;
 	var messageAttachments = message.attachments 
-	
+.type	console.log(messageAttachments)
 	if(messageText){
 		if(message.quick_reply){
 			var payload = message.quick_reply.payload
@@ -159,7 +159,7 @@ function receivedMessage(event){
 		processMessage(senderID,messageText.toLowerCase());
 	}
 	else if(messageAttachments.type=='location'){
-			console.log(messageAttachments)
+			console.log(messageAttachments.type)
 			console.log(messageAttachments[0].payload.coordinates)
 			if(location[senderID.toString()]['lat']=='NA'&&location[senderID.toString()]['lon']=='NA'){
 				var loc = []
