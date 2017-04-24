@@ -138,7 +138,6 @@ function receivedMessage(event){
 	var messageAttachments = message.attachments 
 	
 	if(messageText){
-		
 		if(message.quick_reply){
 			var payload = message.quick_reply.payload
 			if(message.quick_reply.payload.includes("#scores ")){
@@ -197,6 +196,7 @@ function processMessage(senderID,messageText){
 }
 function places(senderID,text){
 	var query = text.replace("#pl ")
+	console.log("in places "+location)
 	var coord = location[senderID.toString()]['lat']+","+location[senderID.toString()]['lon']
 	var imgBaseURL = "https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8&photoreference="
 	console.log(coord)
