@@ -159,8 +159,8 @@ function receivedMessage(event){
 				location[senderID.toString()]=loc
 				console.log("set")
 			}
-			console.log(message.location.coordinates)
-			snedTextMessage(senderID,"Default Location set!!")
+			console.log(messageAttachments.payload.coordinates)
+			sendTextMessage(senderID,"Default Location set!!")
 		}
 	else{
 	console.log(event)
