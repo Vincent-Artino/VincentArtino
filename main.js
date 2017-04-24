@@ -145,9 +145,14 @@ function receivedMessage(event){
 		}
 		else if(message.location){
 			if(location[senderID]['lat']=='NA'&&location[senderID]['lon']=='NA'){
-				location[senderID.toString()]['lat']=message.location.coordinates.lat
-				location[senderID.toString()]['lon']=message.location.coordinates.long
+				var loc = []
+				loc['lat']=message.location.coordinates.lat
+				loc['lon']=message.location.coordinates.long
+				location[senderID.toString()]=loc
+				console.log("set")
 			}
+			console.log(message.location.coordinates)
+			snedTextMessage(senderID,"Default Location set!!")
 		}
 		else
 		processMessage(senderID,messageText.toLowerCase());
