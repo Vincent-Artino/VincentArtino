@@ -197,7 +197,10 @@ function processMessage(senderID,messageText){
 function places(senderID,text){
 	var query = text.replace("#pl ","")
 	console.log("in places "+location)
-	var coord = location[senderID.toString()]['lat']+","+location[senderID.toString()]['lon']
+	if(location)
+		var coord = location[senderID.toString()]['lat']+","+location[senderID.toString()]['lon']
+	else
+		var coord = "17.3850,78.4867"
 	var imgBaseURL = "https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8&photoreference="
 	console.log(coord)
 	if(query==''){
