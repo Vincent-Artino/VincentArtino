@@ -238,7 +238,7 @@ function places(senderID,text){
 				   	var data = []
 					var i = 0
 					body.results.forEach(function(elem){
-						console.log(elem.name+elem.photos)
+						console.log(elem.photos)
 						if(i<10){
 							data.push({
 									"title":elem.name,
