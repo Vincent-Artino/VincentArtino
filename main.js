@@ -94,12 +94,12 @@ app.post('/webhook', function (req, res) {
 			if(event.postback.payload=='Get started'){
 				console.log(getDetails(event.sender.id))
 				//sendTextMessage(event.sender.id,"Hello "+getFirstName(event.sender.id))
-				var location = [
+				var loc = [
 				      {
 					"content_type":"location",
 				      }
 				]
-				sendQuick(event.sender.id,"please set a default location",location)
+				sendQuick(event.sender.id,"please set a default location",loc)
 			}
 		}
 		else{
@@ -135,7 +135,7 @@ function receivedMessage(event){
 	var message = event.message;
 	var senderID = event.sender.id;
 	var messageText = message.text;
-	var messageAttachments = message.attachments;
+	var messageAttachments = message.attachm
 	if(messageText){
 		
 		if(message.quick_reply){
@@ -150,7 +150,7 @@ function receivedMessage(event){
 		else
 		processMessage(senderID,messageText.toLowerCase());
 	}
-	else if(message.attachments.location){
+	else if(messageAttachments){
 			console.log(message)
 			if(location[senderID]['lat']=='NA'&&location[senderID]['lon']=='NA'){
 				var loc = []
@@ -500,8 +500,7 @@ Burl = "http://api.duckduckgo.com/?q="+text+"&format=json&pretty=1";
 
 }
 function sendQuick(recID,title,array){
-	console.log(array)
-	
+	//console.log(array)
 	var messageData = {
 		recipient : {
 			id : recID	
