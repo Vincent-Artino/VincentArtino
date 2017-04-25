@@ -1,0 +1,17 @@
+{
+  "greetings":[
+    "Hi",
+    "hello",
+    "hey",
+    "ssup",
+    "supp",
+    "yo",
+    "namashkar",
+    "namaskaram"
+  ],
+  "response":[
+    "hey!",
+    "hey there",
+    ""
+  ]
+}
