@@ -242,7 +242,7 @@ function places(senderID,text){
 	}
 	else{
 		request({
-		  url:"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+coord+"&radius=1000&type="+query+"&key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8",
+		  url:"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+coord+"&radius=2000&type="+query+"&key=AIzaSyCsojMsfWiHhc4RwlXmfGBbNy747m5oAk8",
 		  json:true
 		}, function(error, res, body){
 			   if(!error){
